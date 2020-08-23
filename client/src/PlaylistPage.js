@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
 import Playlist from './Playlist';
+import {sortGenres, propToArr} from './analyzeData';
 
 function PlaylistPage() {
   const [appState, setAppState] = useState({
@@ -48,43 +49,13 @@ function PlaylistPage() {
     setAppState({loggedIn: appState.loggedIn, nowPlaying: appState.nowPlaying, playlists: appState.playlists, genres: newObj});
   }
 
-  const sortGenres = (genres) => {
-    var sortable = [];
-    for (var g in genres) {
-        sortable.push([g, genres[g]]);
-    }
-
-    sortable.sort(function(a, b) {
-        return b[1] - a[1];
-    }); 
-
-    return sortable;
-  }
-
   const strGenres = (genres) => {
-    let str = '';
-
     if(Object.keys(genres).length > 0) {
-          let index = 0;
-          let i = 0;
-          
-          while(index < 5) {
-            let g = genres[i][0];
-            if(g !== "pop") {
-              if(index > 0) {
-                str += ", ";
-              }
-              str += g;
-              index++;
-            }
-            i++;
-        }
+      return propToArr(genres, 5).map(genre => <p>{genre}</p>);
     } else {
-      str = "N/A";
+      return <p>N/A</p>;
     }
-    return str;
   }
-
 
   return (
     <div className='App'>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
+import {sortGenres, updateObj, propToArr} from './analyzeData';
 
 function Playlist(props) {
 
@@ -38,8 +39,12 @@ function Playlist(props) {
 			spotifyApi.getArtists(ids.slice(index, index + 50))
 				.then((response) => {
 					response.artists.forEach((artist) => {
-						artist.genres.forEach(g => updateObj(genres, g));
+						artist.genres.forEach(g => {
+							updateObj(genres, g);
+							updateObj(props.allGenres, g);
+						});
 					});
+					props.setGenres(props.allGenres);
 					getArtist(genres, ids, index+50, n);
 				});
 		} else {
@@ -48,53 +53,19 @@ function Playlist(props) {
 		}
 	}
 
-	const updateObj = (genres, genre) => {
-		if(genres.hasOwnProperty(genre)) {
-  			genres[genre]++;
-  		} else {
-  			genres[genre] = 1;
-  		}
-	}
-
 	const setGenres = (genres) => {
 		let str = '';
         let newGenres = {};
 
 		if(Object.keys(genres).length > 0) {
 	        newGenres = sortGenres(genres);
-	        let index = 0;
-        	let i = 0;
-	        
-	        while(index < 3) {
-	        	let g = newGenres[i][0];
-	        	if(g !== "pop") {
-	        		if(index > 0) {
-		        		str += ", ";
-		        	}
-	        		str += g;
-	        		index++;
-	        	}
-		        i++;
-		    }
+	        str = propToArr(newGenres, 3).join(', ');
 		} else {
 			str = "N/A";
 		}
 
         setAppState({loading: false, genres: str, genreObj: newGenres});
         props.setGenres(allGenres);
-	}
-
-	const sortGenres = (genres) => {
-		var sortable = [];
-		for (var g in genres) {
-		    sortable.push([g, genres[g]]);
-		}
-
-		sortable.sort(function(a, b) {
-		    return b[1] - a[1];
-		});	
-
-		return sortable;
 	}
 
 	useEffect(() => {
