@@ -1,0 +1,64 @@
+body {
+  font-family: 'Proxima Nova', sans-serif;
+  background: #191414;
+  color: white;
+  font-family: Circular,Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+h3 {
+  letter-spacing: -.02em;
+  font-weight: 900;
+}
+
+button {
+  margin: 10px;
+  background: #1db954;
+  border: none;
+  border-radius: 20px/50%;
+  padding: 1em 2em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 2px;
+  cursor: pointer;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.App {
+  padding: 5rem;
+  text-align: center;
+}
+
+.playlist-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  width: 85%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.playlist {
+  width: 200px;
+  text-align: center;
+  margin: 1em;
+  box-sizing: border-box;
+
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+.genres {
+  font-size: 0.8em;
+}
+
+
