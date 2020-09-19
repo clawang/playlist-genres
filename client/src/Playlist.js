@@ -30,14 +30,17 @@ function Playlist(props) {
 				}
 			});
 			ids = ids.filter(id => id !== null);
-    		getArtist({}, ids, 0, ids.length);
+			//console.log(props.pl.name);
+    		getArtist({}, ids, 0, ids.length, props.pl.name);
       	})
 	}
 
-	const getArtist = (genres, ids, index, n) => {
+	const getArtist = (genres, ids, index, n, name) => {
 		if(index < n) {
 			spotifyApi.getArtists(ids.slice(index, index + 50))
 				.then((response) => {
+					console.log(name);
+					console.log(response);
 					response.artists.forEach((artist) => {
 						artist.genres.forEach(g => {
 							updateObj(genres, g);
@@ -45,10 +48,9 @@ function Playlist(props) {
 						});
 					});
 					props.setGenres(props.allGenres);
-					getArtist(genres, ids, index+50, n);
+					getArtist(genres, ids, index+50, n, name);
 				});
 		} else {
-			console.log(props.pl.name);
 			setGenres(genres);
 		}
 	}

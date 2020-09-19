@@ -25,16 +25,32 @@ function propToArr(obj, n) {
 	let index = 0;
 	let i = 0;
 	let result = [];
+	let max = obj.length - 1;
     
-    while(index < n) {
-    	let g = obj[i][0];
-    	if(g !== "pop") {
-    		result.push(g);
-    		index++;
-    	}
+    while(index < n && index < max) {
+    	if(obj[i]) {
+	    	let g = obj[i][0];
+	    	if(g !== "pop" && g !== "edm" && g !== "rap") {
+	    		result.push(g);
+	    		index++;
+	    	} else {
+	    		max -= 1;
+	    	}
+	    }
         i++;
     }
     return result;
 }
 
-export {sortGenres, updateObj, propToArr};
+function arrToList(arr, prop) {
+	let str = '';
+	arr.forEach((item, index) => {
+		str += item[prop];
+		if(index < arr.length - 1) {
+			str += ', ';
+		}
+	});
+	return str;
+}
+
+export {sortGenres, updateObj, propToArr, arrToList};
