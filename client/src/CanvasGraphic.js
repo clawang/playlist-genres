@@ -24,7 +24,11 @@ function CanvasGraphic(props) {
   	c.width = c.clientWidth * 2
 	c.height = c.clientHeight * 2
   	let ctx = c.getContext("2d");
-  	ctx.scale(2, 2);
+  	if(window.outerWidth < 600) {
+  		ctx.scale(1.6, 1.6);
+  	} else {
+  		ctx.scale(2, 2);
+  	}
 
   	if(palette.DarkMuted) {
   		const bgColor = palette.DarkMuted.getRgb();
@@ -35,7 +39,7 @@ function CanvasGraphic(props) {
 	ctx.fillRect(0, 0, c.width, c.height);
 
 	ctx.fillStyle = 'rgb(255,255,255)';
-	ctx.font = "16px 'Circular Spotify Tx T Black'";
+	ctx.font = "16px 'Circular Spotify'";
 
   	if(palette.Vibrant) {
   		const bgColor = palette.Vibrant.getRgb();
@@ -65,10 +69,10 @@ function CanvasGraphic(props) {
 		ctx.fillStyle = 'rgb(209,255,106)';
 	}
 
-	ctx.font = "18px 'Circular Spotify Tx T Black'";
+	ctx.font = "18px 'Circular Spotify'";
 	ctx.fillText('TOP ARTISTS', 30, 106);
 	ctx.fillStyle = 'rgb(255,255,255)';
-	ctx.font = "20px 'Circular Spotify Tx T Black'";
+	ctx.font = "20px 'Circular Spotify'";
 
 	for(let i = 0; i < 5; i++) {
 		if(props.artists[i] && Object.keys(props.artists[i]).length != 0) {
@@ -87,10 +91,10 @@ function CanvasGraphic(props) {
 		ctx.fillStyle = 'rgb(209,255,106)';
 	}
 
-	ctx.font = "18px 'Circular Spotify Tx T Black'";
+	ctx.font = "18px 'Circular Spotify'";
 	writeText(ctx, 'TOP SONGS', 30, 320);
 	ctx.fillStyle = 'rgb(255,255,255)';
-	ctx.font = "20px 'Circular Spotify Tx T Black'";
+	ctx.font = "20px 'Circular Spotify'";
 
 	for(let i = 0; i < 5; i++) {
 		if(props.tracks[i]) {
@@ -108,10 +112,10 @@ function CanvasGraphic(props) {
 	} else {
 		ctx.fillStyle = 'rgb(209,255,106)';
 	}
-	ctx.font = "18px 'Circular Spotify Tx T Black'";
+	ctx.font = "18px 'Circular Spotify'";
 	writeText(ctx, 'TOP GENRE', 250, 430);
 	ctx.fillStyle = 'rgb(255,255,255)';
-	ctx.font = "24px 'Circular Spotify Tx T Black'";
+	ctx.font = "24px 'Circular Spotify'";
 	if(props.genres && props.genres[0][0]) {
 		let g = props.genres[0][0];
 		let topGenre = g.charAt(0).toUpperCase() + g.slice(1);
@@ -124,7 +128,7 @@ function CanvasGraphic(props) {
 	} else {
 		ctx.fillStyle = 'rgb(255,255,255,50)';
 	}
-	ctx.font = "12px 'Circular Spotify Tx T Black'";
+	ctx.font = "12px 'Circular Spotify'";
 	writeText(ctx, 'bit.ly/quarantine-wrapped', 305, 66);
   }
 
@@ -159,7 +163,7 @@ function CanvasGraphic(props) {
 	    		<h1>Share with the world.</h1>
 	    		<h3>Or hide it away forever.</h3>
 	    		<h3>Your choice, really.</h3>
-	    		<button onClick={dlCanvas} style={{marginTop: '2em'}}>Download</button>
+	    		<button onClick={dlCanvas} className='download-btn'>Download</button>
 	    	</div>
 	      <canvas id='downloadable' width='500' height='500'></canvas>
       </div>

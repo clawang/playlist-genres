@@ -37,8 +37,10 @@ function TopArtists(props) {
                   <img src={artist.images[0].url} className="img2"/>
                   <img src={artist.images[0].url} className="img3"/>
                 </div>
-                <h3 className="black">#{index+1}</h3>
-                <h3 className="green">{artist.name}</h3>
+                <div className="artist-desc">
+                  <h3 className="black">#{index+1}</h3>
+                  <h3 className="green">{artist.name}</h3>
+                </div>
               </div>
             );
           })}

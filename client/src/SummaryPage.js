@@ -29,6 +29,13 @@ function SummaryPage(props) {
     3: 'long_term'
   };
 
+  const colors = {
+    green: '#d1ff6a',
+    seagreen: '#48937e',
+    pink: '#e21ca4',
+    black: '#191414'
+  }
+
   useEffect(() => {
     setAppState({timeframe:2});
   }, [setAppState]);
@@ -56,16 +63,16 @@ function SummaryPage(props) {
     let graphic = document.querySelector('.canvas-graphic-wrapper');
     let bg = document.querySelector('.summary-bg');
     if(container.scrollTop < topSongs.offsetTop - 500) {
-      bg.style.backgroundColor = '#e21ca4';
+      bg.style.backgroundColor = colors.pink;
       setLocation(1);
     } else if(container.scrollTop >= topSongs.offsetTop - 500 && container.scrollTop < topGenres.offsetTop - 500) {
-      bg.style.backgroundColor = '#191414';
+      bg.style.backgroundColor = colors.black;
       setLocation(2);
     } else if(container.scrollTop >= topGenres.offsetTop - 500 && container.scrollTop < graphic.offsetTop - 500) {
-      bg.style.backgroundColor = '#d1ff6a';
+      bg.style.backgroundColor = colors.green;
       setLocation(3);
     } else if(container.scrollTop >= graphic.offsetTop - 500) {
-      bg.style.backgroundColor = '#48937e';
+      bg.style.backgroundColor = colors.seagreen;
       setLocation(4);
     }
   }
@@ -80,7 +87,7 @@ function SummaryPage(props) {
         </div>
         :
         <div className="summary">
-          <div className="credit">Made with ♥ by <a href="https://clawang.github.io/">Claire Wang</a>.</div>
+          <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
           <div className="navigation"><p>{location} / 4</p></div>
           <div className="summary-content" onScroll={handleScroll}>
             <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists}  />

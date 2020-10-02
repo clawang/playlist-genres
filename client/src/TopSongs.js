@@ -31,20 +31,22 @@ function TopSongs(props) {
             <img src={appState.topSongs[0].album.images[0].url} />
           </div>
           <div className="songs">
-            <h2>Your Top Songs:</h2>
-            {appState.topSongs.slice(0,5).map((song, index) => {
-              return (
-                <div className="song-wrapper" key={index}>
-                  <div className="song-number">
-                    <h3>#{index + 1}</h3>
+            <h2>Your Top Songs</h2>
+            <div className="songs-wrapper">
+              {appState.topSongs.slice(0,5).map((song, index) => {
+                return (
+                  <div className="song-wrapper" key={index}>
+                    <div className="song-number">
+                      <h3>#{index + 1}</h3>
+                    </div>
+                    <div className="song-details">
+                      <h3>"{(song.name.length > 19) ? song.name.substring(0, 19).concat('..') : song.name}"</h3>
+                      <p className="pink">{arrToList(song.artists, "name")}</p>
+                    </div>
                   </div>
-                  <div className="song-details">
-                    <h3>"{song.name}"</h3>
-                    <p className="pink">{arrToList(song.artists, "name")}</p>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
         :
