@@ -7,7 +7,7 @@ var path = require('path');
 
 var client_id = '2fe65fcbcf884c1c9fafda1d069bb45c'; // Your client id
 var client_secret = '892e45da9ad74f70b37eddaac40defc7'; // Your secret
-var redirect_uri = 'https://quarantine-wrapped.herokuapp.com/callback'; // Your redirect uri
+var redirect_tag = '/callback'; // Your redirect uri
 
 var generateRandomString = function(length) {
   var text = '';
@@ -34,6 +34,9 @@ app.get('/login', function(req, res) {
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
 
+  var fullUrl = req.protocol + '://' + req.get('host');
+  var redirect_uri = fullUrl + redirect_tag;
+
   // your application requests authorization
   var scope = 'user-read-private user-read-email user-read-playback-state user-top-read';
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -54,6 +57,9 @@ app.get('/callback', function(req, res) {
   var code = req.query.code || null;
   var state = req.query.state || null;
   var storedState = req.cookies ? req.cookies[stateKey] : null;
+
+  var fullUrl = req.protocol + '://' + req.get('host');
+  var redirect_uri = fullUrl + redirect_tag;
 
   if (state === null || state !== storedState) {
     res.redirect('/#' +
