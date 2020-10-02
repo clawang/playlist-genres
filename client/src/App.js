@@ -50,7 +50,7 @@ function App() {
             <div className="heading-2"><h1>Quarantine Wrapped?</h1></div>
             <div className="start-descrip">
               <h3 className="green">Relive and discover the artists and music that have gotten you through.</h3>
-              <button><a href='http://localhost:8888/login'> Login to Spotify </a></button>
+              <button><a href='/login'> Login to Spotify </a></button>
             </div>
             <p className="disclaimer">* NOT affiliated with Spotify</p>
           </div>
