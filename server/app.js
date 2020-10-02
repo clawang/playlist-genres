@@ -12,6 +12,7 @@ var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var path = require('path');
 
 var client_id = '2fe65fcbcf884c1c9fafda1d069bb45c'; // Your client id
 var client_secret = '892e45da9ad74f70b37eddaac40defc7'; // Your secret
@@ -38,7 +39,7 @@ var app = express();
 
 const PORT = process.env.PORT || 8888;
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/build'))
    .use(cors())
    .use(cookieParser());
 
@@ -106,7 +107,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('http://localhost:3000/#' +
+        res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
@@ -143,6 +144,10 @@ app.get('/refresh_token', function(req, res) {
       });
     }
   });
+});
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 //console.log('Listening on 8888');
