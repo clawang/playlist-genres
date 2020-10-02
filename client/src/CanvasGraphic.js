@@ -47,6 +47,7 @@ function CanvasGraphic(props) {
   	ctx.fillRect(30, 43, 230, 3);
 
   	const image = new Image();
+  	image.crossOrigin = 'Anonymous';
   	if(props.tracks) {
 		image.src = props.artists[0].images[0].url || '';
 	}
@@ -139,8 +140,10 @@ function CanvasGraphic(props) {
 
 	/* In addition to <a>'s "download" attribute, you can define HTTP-style headers */
 	dt = dt.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=Canvas.png');
-
-	this.href = dt;
+	var link = document.createElement('a');
+  	link.download = 'quarantine-wrapped.png';
+  	link.href = dt;
+  	link.click();
   }
 
   useEffect(() => {
