@@ -3,7 +3,6 @@ import './App.scss';
 import SpotifyWebApi from 'spotify-web-api-js';
 import PlaylistPage from './PlaylistPage';
 import SummaryPage from './SummaryPage';
-import AOS from 'aos';
 
 function App() {
   const [appState, setAppState] = useState({
@@ -33,8 +32,6 @@ function App() {
     }
     setAppState({loggedIn: token ? true : false, token: token});
   }, [setAppState]);
-
-  AOS.init();
 
   return (
     <div className='App'>
