@@ -14,8 +14,8 @@ function TopArtists(props) {
     let options = {time_range: props.timeframe};
     spotifyApi.getMyTopArtists(options)
       .then((response) => {
-        console.log(response.items);
         setAppState({topSongs: appState.topSongs, topArtists: response.items});
+        props.updateArtists(response.items);
       })
   }
 
@@ -27,11 +27,11 @@ function TopArtists(props) {
     <div className="top-artists-wrapper">
       {appState.topArtists[0].name ?
         <div className="top-artists">
-          <h2>Your Top Artists:</h2>
+          <h1>Top Artists</h1>
           <div className="artists-wrapper">
           {appState.topArtists.slice(0,3).map((artist, index) => {
             return(
-              <div className="artist-wrapper">
+              <div className="artist-wrapper" key={index}>
                 <div className="artist-images">
                   <img src={artist.images[0].url} className="img1" />
                   <img src={artist.images[0].url} className="img2"/>

@@ -15,6 +15,7 @@ function TopSongs(props) {
     spotifyApi.getMyTopTracks(options)
       .then((response) => {
         setAppState({topSongs: response.items});
+        props.updateTracks(response.items);
       })
   }
 
@@ -33,7 +34,7 @@ function TopSongs(props) {
             <h2>Your Top Songs:</h2>
             {appState.topSongs.slice(0,5).map((song, index) => {
               return (
-                <div className="song-wrapper">
+                <div className="song-wrapper" key={index}>
                   <div className="song-number">
                     <h3>#{index + 1}</h3>
                   </div>

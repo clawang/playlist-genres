@@ -37,13 +37,14 @@ function TopGenres(props) {
         });
       }
     });
+    props.updateGenres(appState.genres);
   }
 
   const strGenres = (genres) => {
     if(Object.keys(genres).length > 0) {
       let newGenres = sortGenres(genres);
       let arr = [];
-      let g = propToArr(newGenres, 5).map(genre => <div className="genre-level"><div className="genre-level-front"><h3>{genre}</h3></div><div className="genre-level-side"></div></div>);
+      let g = propToArr(newGenres, 5).map((genre, index) => <div className="genre-level" key={index}><div className="genre-level-front"><h3>{genre}</h3></div><div className="genre-level-side"></div></div>);
       arr[0] = g[4];
       arr[1] = g[3];
       arr[2] = g[1];
@@ -58,7 +59,8 @@ function TopGenres(props) {
   return (
     <div className="genres-wrapper">
       <div className="genres">
-        <h2>Your Top Genres:</h2>
+        <h2>Your Top Niche Genres</h2>
+        <p>Ever wondered what subgenres of music you listen to most often?</p>
         <div className="genre-level-wrapper">
             {strGenres(appState.genres)} 
         </div>

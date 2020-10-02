@@ -3,7 +3,9 @@ import React from 'react';
 function sortGenres(genres) {
 	var sortable = [];
 	for (var g in genres) {
-	    sortable.push([g, genres[g]]);
+		if(g !== "pop" && g !== "edm" && g !== "rap") {
+	    	sortable.push([g, genres[g]]);
+	    }
 	}
 
 	sortable.sort(function(a, b) {

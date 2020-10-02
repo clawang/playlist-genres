@@ -3,6 +3,7 @@ import './App.scss';
 import SpotifyWebApi from 'spotify-web-api-js';
 import PlaylistPage from './PlaylistPage';
 import SummaryPage from './SummaryPage';
+import AOS from 'aos';
 
 function App() {
   const [appState, setAppState] = useState({
@@ -33,15 +34,27 @@ function App() {
     setAppState({loggedIn: token ? true : false, token: token});
   }, [setAppState]);
 
+  AOS.init();
+
   return (
     <div className='App'>
       {appState.loggedIn ?
         <div>
           <SummaryPage token={appState.token} />
-          <PlaylistPage token={appState.token} />
+        {/*<PlaylistPage token={appState.token} />*/}
         </div>
         :
-        <button><a href='http://localhost:8888'> Login to Spotify </a></button>
+        <div className="start-screen">
+          <div>
+            <div className="heading-1"><h1>Ready for your</h1></div>
+            <div className="heading-2"><h1>Quarantine Wrapped?</h1></div>
+            <div className="start-descrip">
+              <h3 className="green">Relive and discover the artists and music that have gotten you through.</h3>
+              <button><a href='http://localhost:8888/login'> Login to Spotify </a></button>
+            </div>
+            <p className="disclaimer">* NOT affiliated with Spotify</p>
+          </div>
+        </div>
       }
     </div>
   )
