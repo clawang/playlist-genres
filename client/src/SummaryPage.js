@@ -33,13 +33,6 @@ function SummaryPage(props) {
     setAppState({timeframe:2});
   }, [setAppState]);
 
-  // useEffect(() => {
-  //   console.log(appState.finishedLoading);
-  //   if(loaded >= 3) {
-  //     setAppState({timeframe: appState.timeframe, tracks: appState.tracks, finishedLoading: true});
-  //   }
-  // }, [loaded]);
-
   const updateTracks = (newTracks) => {
     setAppState({timeframe: appState.timeframe, tracks: newTracks});
     setLoaded(loaded => loaded + 1);

@@ -13,7 +13,6 @@ function CanvasGraphic(props) {
 	}
   	Vibrant.from(src).getPalette(function(err, palette) {
 		if(palette) {
-			console.log(palette);
 			setAppState({palette: palette});
 			drawCanvas(palette);
 		}
@@ -73,7 +72,6 @@ function CanvasGraphic(props) {
 	for(let i = 0; i < 5; i++) {
 		if(props.artists[i] && Object.keys(props.artists[i]).length != 0) {
 			let name = props.artists[i].name;
-			console.log(props.artists[i]);
 			if(name.length > 19) {
 				name = name.substring(0, 19).concat('..');
 			}
@@ -146,7 +144,6 @@ function CanvasGraphic(props) {
   }
 
   useEffect(() => {
-    console.log(props.finished);
     if(props.finished >= 3) {
     	getColor();
     }
