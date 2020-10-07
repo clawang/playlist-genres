@@ -38,7 +38,14 @@ function SummaryPage(props) {
 
   useEffect(() => {
     setAppState({timeframe:2});
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   }, [setAppState]);
+
+  window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  });
 
   const updateTracks = (newTracks) => {
     setAppState({timeframe: appState.timeframe, tracks: newTracks});
