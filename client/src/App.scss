@@ -171,11 +171,11 @@ button {
   width: 100%;
   padding: 5em 0;
   scroll-snap-align: start;
+  overflow: hidden;
 
   @media only screen and (max-width: 800px) {
     padding: 2em;
-    height: 100vh;
-    overflow: hidden;
+    height: 100%;
   }
 }
 
@@ -416,7 +416,7 @@ button {
 
   .genre-level-front {
     background: $pink;
-    border: 1px solid $black;
+    border: 3px solid $black;
     //flex: 0 0 20%;
     display: flex;
     padding: 1em;
@@ -480,6 +480,7 @@ button {
     width: 50%;
     padding: 1em 3em 1em 1em;
     flex-grow: 1;
+    margin-right: 2em;
   }
 
   canvas {
@@ -607,11 +608,9 @@ button {
 
     .canvas-title {
       width: 100%;
+      margin-right: 0;
+      padding: 1em;
     }
-  }
-
-  @mixin subpage {
-    padding: 2em;
   }
 
   .top-artists {
@@ -657,6 +656,7 @@ button {
     height: 100%;
     width: 100%;
   }
+
   .genre-level-wrapper {
     display: block;
     height: 400px;
@@ -728,12 +728,58 @@ button {
 
 @media only screen and (max-width: 600px) {
   .canvas-graphic-wrapper canvas {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
+    margin-top: 1em;
   }
 
   .top-artists .artists-wrapper .artist-wrapper .artist-images {
     height: 150px;
+  }
+
+  .genre-level-wrapper {
+    width: 400px;
+    .genre-level {
+      width: 130px;
+      .genre-level-front {
+        width: 130px;
+        h3 {
+          font-size: 1em;
+        }
+      }
+    }
+    &> div {
+      &:nth-of-type(1) {
+        //height: 150px;
+        left: 0;
+        z-index: 3;
+      }
+
+      &:nth-of-type(2) {
+        //height: 200px;
+        left: 230px;
+        z-index: 5;
+      }
+
+      &:nth-of-type(3) {
+        //height: 300px;
+        height: 350px;
+        left: 60px;
+      }
+
+      &:nth-of-type(4) {
+        //height: 400px;
+        left: 180px;
+        height: 450px;
+      }
+
+      &:nth-of-type(5) {
+        //height: 250px;
+        left: 115px;
+        height: 250px;
+        z-index: 4;
+      }
+    }
   }
 }
 
