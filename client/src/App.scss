@@ -172,6 +172,7 @@ button {
   padding: 5em 0;
   scroll-snap-align: start;
   overflow: hidden;
+  box-sizing: border-box;
 
   @media only screen and (max-width: 800px) {
     padding: 2em;
