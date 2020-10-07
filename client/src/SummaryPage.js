@@ -47,6 +47,14 @@ function SummaryPage(props) {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   });
 
+  window.addEventListener("load",function() {
+    // Set a timeout...
+    setTimeout(function(){
+      // Hide the address bar!
+      window.scrollTo(0, 1);
+    }, 0);
+  });
+
   const updateTracks = (newTracks) => {
     setAppState({timeframe: appState.timeframe, tracks: newTracks});
     setLoaded(loaded => loaded + 1);
