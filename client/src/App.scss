@@ -980,27 +980,47 @@ $song-count: 9;
     display: none;
   }
 
-  .top-songs .songs-wrapper {
-    height: 200px;
-
-    .songs-3d {
-      transform-origin: center center 100px * -2;
+  .top-songs {
+    h2 {
+      line-height: 1em;
+      font-size: 1.7em;
     }
 
-    @for $i from 0 through $song-count {
-      .song-#{$i} {
-        transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 90px) rotateY(20deg);
-
-        &:hover {
-          transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 90px) rotateY(20deg);
+    .song-wrapper {
+      position: relative;
+      .song-number {
+        position: absolute;
+        left: -0.8em;
+        h3 {
+          margin-bottom: 0;
+          color: $green;
+          font-weight: 100;
+          font-size: 0.8em;
         }
-        //transform: translateZ(-100px * $i);
       }
     }
+    .songs-wrapper {
+      height: 200px;
 
-    .song-cover {
-      width: 130px;
-      height: 130px;
+      .songs-3d {
+        transform-origin: center center 100px * -2;
+      }
+
+      @for $i from 0 through $song-count {
+        .song-#{$i} {
+          transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 90px) rotateY(20deg);
+
+          &:hover {
+            transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 90px) rotateY(20deg);
+          }
+          //transform: translateZ(-100px * $i);
+        }
+      }
+
+      .song-cover {
+        width: 130px;
+        height: 130px;
+      }
     }
   }
 }
