@@ -42,18 +42,23 @@ function SummaryPage(props) {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   }, [setAppState]);
 
+  window.addEventListener('load', () => {
+    updateHeight();
+  });
+
   window.addEventListener('resize', () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
+    updateHeight();
   });
 
-  window.addEventListener("load",function() {
-    // Set a timeout...
-    setTimeout(function(){
-      // Hide the address bar!
-      window.scrollTo(0, 1);
-    }, 0);
-  });
+  const updateHeight = () => {
+    let h = window.innerHeight;
+    document.querySelector('.top-songs-wrapper').height = h;
+    document.querySelector('.top-artists-wrapper').height = h;
+    document.querySelector('.genres-wrapper').height = h;
+    document.querySelector('.canvas-graphic-wrapper').height = h;
+  }
 
   const updateTracks = (newTracks) => {
     setAppState({timeframe: appState.timeframe, tracks: newTracks});

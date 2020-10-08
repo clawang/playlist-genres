@@ -13,11 +13,18 @@ $seagreen: #48937e;
   src: url('Circular Book.ttf');
 }
 
+html {
+  overflow: auto;
+  height: 100%;
+}
+
 body {
   font-family: 'Circular Book', 'Proxima Nova', sans-serif;
   color: white;
   font-size: 16px;
   line-height: 1.5;
+  height: auto;
+  //border: 3px solid black;
 }
 
 h1 {
@@ -81,6 +88,10 @@ button {
   }
 }
 
+.App {
+  //padding-top: 1px;
+}
+
 .playlist-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -142,7 +153,8 @@ button {
 
 .summary {
   overflow-y: scroll;
-  height: 101vh;
+  height: 100vh;
+  left: 0;
 }
 
 .summary-content {

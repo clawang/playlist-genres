@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.98a48206.chunk.css",
-    "main.js": "/static/js/main.c5792429.chunk.js",
-    "main.js.map": "/static/js/main.c5792429.chunk.js.map",
+    "main.css": "/static/css/main.158d0548.chunk.css",
+    "main.js": "/static/js/main.1e971dbb.chunk.js",
+    "main.js.map": "/static/js/main.1e971dbb.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.09b85ec0.js",
     "runtime-main.js.map": "/static/js/runtime-main.09b85ec0.js.map",
     "static/js/2.60dfc93d.chunk.js": "/static/js/2.60dfc93d.chunk.js",
     "static/js/2.60dfc93d.chunk.js.map": "/static/js/2.60dfc93d.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.6886ee3f9b2af1142196da592ba398fc.js": "/precache-manifest.6886ee3f9b2af1142196da592ba398fc.js",
+    "precache-manifest.c9f7266d7d3da6d78ca1509fb2e26bbb.js": "/precache-manifest.c9f7266d7d3da6d78ca1509fb2e26bbb.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.98a48206.chunk.css.map": "/static/css/main.98a48206.chunk.css.map",
+    "static/css/main.158d0548.chunk.css.map": "/static/css/main.158d0548.chunk.css.map",
     "static/js/2.60dfc93d.chunk.js.LICENSE.txt": "/static/js/2.60dfc93d.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/static/media/CircularSpotifyTxT-Black.01173b24.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.09b85ec0.js",
     "static/js/2.60dfc93d.chunk.js",
-    "static/css/main.98a48206.chunk.css",
-    "static/js/main.c5792429.chunk.js"
+    "static/css/main.158d0548.chunk.css",
+    "static/js/main.1e971dbb.chunk.js"
   ]
 }
