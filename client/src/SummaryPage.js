@@ -93,7 +93,7 @@ function SummaryPage(props) {
   }
 
   const handleScroll = () => {
-    var container = document.querySelector(".summary-content");
+    var container = document.querySelector(".full-height");
     let topSongs = document.querySelector('.top-songs-wrapper');
     let topGenres = document.querySelector('.genres-wrapper');
     let graphic = document.querySelector('.canvas-graphic-wrapper');
@@ -125,8 +125,8 @@ function SummaryPage(props) {
         <div className="summary">
             <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
             <div className="navigation"><p>{location} / 4</p></div>
-            <div className="summary-content" onScroll={handleScroll}>
-              <Div100vh>
+            <div className="summary-content">
+              <Div100vh className="full-height" onScroll={handleScroll}>
                 <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists}  />
                 <TopSongs token={props.token} timeframe={ranges[appState.timeframe]} updateTracks={updateTracks}  />
                 <TopGenres token={props.token} timeframe={ranges[appState.timeframe]} updateGenres={updateGenres} />

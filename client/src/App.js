@@ -3,6 +3,7 @@ import './App.scss';
 import SpotifyWebApi from 'spotify-web-api-js';
 import PlaylistPage from './PlaylistPage';
 import SummaryPage from './SummaryPage';
+import Div100vh from 'react-div-100vh';
 
 function App() {
   const [appState, setAppState] = useState({
@@ -41,17 +42,19 @@ function App() {
         {/*<PlaylistPage token={appState.token} />*/}
         </div>
         :
-        <div className="start-screen">
-          <div>
-            <div className="heading-1"><h1>Ready for your</h1></div>
-            <div className="heading-2"><h1>Quarantine Wrapped?</h1></div>
-            <div className="start-descrip">
-              <h3 className="green">Relive and discover the artists and music that have gotten you through.</h3>
-              <button><a href='/login'> Login to Spotify </a></button>
+        <Div100vh>
+          <div className="start-screen">
+            <div>
+              <div className="heading-1"><h1>Ready for your</h1></div>
+              <div className="heading-2"><h1>Quarantine Wrapped?</h1></div>
+              <div className="start-descrip">
+                <h3 className="green">Relive and discover the artists and music that have gotten you through.</h3>
+                <button><a href='/login'> Login to Spotify </a></button>
+              </div>
+              <p className="disclaimer">* NOT affiliated with Spotify</p>
             </div>
-            <p className="disclaimer">* NOT affiliated with Spotify</p>
           </div>
-        </div>
+        </Div100vh>
       }
     </div>
   )
