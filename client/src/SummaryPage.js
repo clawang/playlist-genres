@@ -39,42 +39,7 @@ function SummaryPage(props) {
 
   useEffect(() => {
     setAppState({timeframe:2});
-    //let vh = window.innerHeight * 0.01;
-    //document.documentElement.style.setProperty('--vh', `${vh}px`);
   }, [setAppState]);
-
-  window.addEventListener('load', () => {
-    updateHeight();
-  });
-
-  window.addEventListener('resize', () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    updateHeight();
-  });
-
-  const updateHeight = () => {
-    if(iOS) {
-      let h = window.innerHeight;
-      // document.querySelector('.top-songs-wrapper').height = h;
-    // document.querySelector('.top-artists-wrapper').height = h;
-    // document.querySelector('.genres-wrapper').height = h;
-    // document.querySelector('.canvas-graphic-wrapper').height = h;
-    }
-  }
-
-  const iOS = () => {
-    return [
-      'iPad Simulator',
-      'iPhone Simulator',
-      'iPod Simulator',
-      'iPad',
-      'iPhone',
-      'iPod'
-    ].includes(navigator.platform)
-    // iPad on iOS 13 detection
-    || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
-  }
 
   const updateTracks = (newTracks) => {
     setAppState({timeframe: appState.timeframe, tracks: newTracks});

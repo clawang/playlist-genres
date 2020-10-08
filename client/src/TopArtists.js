@@ -23,6 +23,22 @@ function TopArtists(props) {
     getArtists();
   }, [setAppState]);
 
+  const resizeImgs = () => {
+    document.querySelectorAll('.img3, .img2, .img1').forEach(img => {
+      console.log(img);
+      let w = img.clientWidth;
+      img.style.height = w + 'px';
+    });
+  }
+
+  window.addEventListener('load', function() {
+    resizeImgs();
+  });
+
+  window.addEventListener('resize', () => {
+    resizeImgs();
+  });
+
   return (
     <div className="top-artists-wrapper">
       {appState.topArtists[0].name ?
@@ -34,7 +50,7 @@ function TopArtists(props) {
               <div className="artist-wrapper" key={index}>
                 <div className="artist-images">
                   <img src={artist.images[0].url} className="img1" />
-                  <img src={artist.images[0].url} className="img2"/>
+                  <img src={artist.images[0].url} className="img2" />                  
                   <img src={artist.images[0].url} className="img3"/>
                 </div>
                 <div className="artist-desc">
