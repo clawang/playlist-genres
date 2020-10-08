@@ -21,11 +21,11 @@ function TopArtists(props) {
 
   useEffect(() => {
     getArtists();
+    resizeImgs();
   }, [setAppState]);
 
   const resizeImgs = () => {
     document.querySelectorAll('.img3, .img2, .img1').forEach(img => {
-      console.log(img);
       let w = img.clientWidth;
       img.style.height = w + 'px';
     });
