@@ -189,6 +189,7 @@ button {
     //height: calc(var(--vh, 1vh) * 100);
     padding: 2em;
     height: 100%;
+    min-height: 0;
   }
 }
 
