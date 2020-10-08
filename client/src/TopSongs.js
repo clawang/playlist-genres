@@ -7,6 +7,14 @@ function TopSongs(props) {
     topSongs: [{}]
   });
 
+  const [songDetails, setSong] = useState({
+    name: '',
+    artists: [{}],
+    number: 0
+  });
+
+  const [mobile, setMobile] = useState(false);
+
   const spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(props.token);
 
@@ -19,21 +27,37 @@ function TopSongs(props) {
       })
   }
 
+  const handleHover = (n, a, i) => {
+    setSong({name: n, artists: a, number: i});
+  }
+
   useEffect(() => {
     getTracks();
+    if(window.outerWidth < 800) {
+      setMobile(true);
+    }
   }, [setAppState]);
+
+  window.addEventListener('resize', () => {
+    if(window.outerWidth < 800) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  });
 
   return (
     <div className="top-songs-wrapper">
       {appState.topSongs[0].name ?
         <div className="top-songs">
-          <div className="song-art">
-            <img src={appState.topSongs[0].album.images[0].url} />
-          </div>
-          <div className="songs">
-            <h2>Your Top Songs</h2>
-            <div className="songs-wrapper">
-              {appState.topSongs.slice(0,5).map((song, index) => {
+          <div className="songs-header">
+            <div className="songs-header-wrapper">
+              <h2>You loved these songs the most.</h2>
+            </div>
+            </div>
+            <div className="songs-text-wrapper">
+            { (mobile) ?
+              appState.topSongs.slice(0, 5).map((song, index) => {
                 return (
                   <div className="song-wrapper" key={index}>
                     <div className="song-number">
@@ -44,9 +68,31 @@ function TopSongs(props) {
                       <p className="pink">{arrToList(song.artists, "name")}</p>
                     </div>
                   </div>
+                )
+              })
+              :
+              <p></p>
+            }
+            </div>
+            <div className="songs-wrapper">
+              <div className="songs-3d">
+              {appState.topSongs.slice(0,mobile ? 5 : 10).map((song, index) => {
+                return (
+                  <SongCover src={song.album.images[0].url} index={index} key={index} handleHover={() => handleHover(song.name, song.artists, index)} handleMouseLeave={() => handleHover('', [{}], 0)}/>
                 );
               })}
             </div>
+          </div>
+          <div className="featured-song-container">
+          {songDetails.name ?
+            <div className="featured-song">
+              <h3 className="featured-song-number">{songDetails.number + 1}</h3>
+              <h3>{(songDetails.name.length > 24) ? songDetails.name.substring(0, 24).concat('..') : songDetails.name}</h3>
+              <p>{arrToList(songDetails.artists, 'name')}</p>
+            </div>
+            :
+            <p></p>
+          }
           </div>
         </div>
         :
@@ -54,6 +100,15 @@ function TopSongs(props) {
       }
     </div>
   )
+}
+
+
+function SongCover(props) {
+  return (
+    <div className={"song-cover " + "song-" + props.index} onMouseOver={props.handleHover} onMouseLeave={props.handleMouseLeave}>
+      <img src={props.src} />
+    </div>
+  );
 }
 
 export default TopSongs;

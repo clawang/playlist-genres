@@ -284,12 +284,17 @@ button {
 .top-songs-wrapper {
   //background: #191414;
   @include subpage;
+  position: relative;
 }
+
+$album-space: 100px;
+$song-count: 9;
 
 .top-songs {
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
+  width: 100%;
+  //display: flex;
 
   .songs {
     text-align: left;
@@ -309,6 +314,112 @@ button {
     }
   }
 
+  .songs-header {
+    width: 100%;
+
+    .songs-header-wrapper {
+      width: 450px;
+    }
+  }
+
+  h2 {
+    color: $green;
+    font-size: 2.5em;
+  }
+
+  h3 {
+    color: $green;
+    font-size: 2em;
+  }
+
+  .featured-song-container {
+    width: 100%;
+    position: relative;
+    // position: absolute;
+    // bottom: 3em;
+    // right: 3em;
+
+    .featured-song {
+      width: 300px;
+      position: absolute;
+      right: 2em;
+      top: -3em;
+
+      p {
+        color: $green;
+      }
+
+      h3 {
+        font-size: 1.8em;
+      }
+
+      .featured-song-number {
+        position: absolute;
+        top: -0.5em;
+        left: -1em;
+        color: $pink;
+      }
+    }
+  }
+
+  .songs-wrapper {
+    width: 100%;
+    height: 300px;
+    margin-top: 100px;
+    //margin: 0 auto;
+    
+    position: relative;
+    perspective: 1200px;
+    perspective-origin: 50% -100%;
+    transform-style: preserve-3d;
+    //perspective: 800px;
+
+    .songs-3d {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      transform-origin: center center $album-space * -1 * ($song-count / 2);
+      transform-style: preserve-3d;
+      transform: rotateY(-40deg);
+      //left: 50%;
+    }
+
+    @for $i from 0 through $song-count {
+      .song-#{$i} {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        transform-origin: center;
+        left: 50%;
+        bottom: 0;
+        z-index: 5 - $i * 1;
+        transform: translate3d(($i - 5) * 50px, 0, $i * -1 * $album-space) rotateY(20deg);
+        transition: 0.5s;
+
+        &:hover {
+          transform: translate3d(($i - 5) * 50px, -50px, $i * -1 * $album-space) rotateY(20deg);
+        }
+        //transform: translateZ(-100px * $i);
+      }
+    }
+
+    .song-cover {
+      transform-style: preserve-3d;
+      //position: absolute;
+      
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .songs-text-wrapper {
+    h3 {
+      color: white;
+    }
+  }
+
   .song-wrapper {
     padding: 0.5em;
     display: flex;
@@ -321,6 +432,7 @@ button {
       width: 80%;
 
       h3 {
+        font-size: 1.5em;
         margin-bottom: 0;
       }
     }
@@ -354,11 +466,16 @@ button {
       display: flex;
       flex-direction: column;
 
+      .artist-desc {
+        width: 50%;
+      } 
+
       .artist-images {
         width: 300px;
         height: 340px;
         position: relative;
         margin: 2em auto;
+        flex-shrink: 0;
       }
 
       .img3 {
@@ -384,7 +501,8 @@ button {
         //height: 200px;
         object-fit: cover;
         position: absolute;
-        top: 0;
+        //top: 0;
+        bottom: 44%;
         left: 16.67%;
       }
     }
@@ -613,7 +731,7 @@ button {
       padding: 1em;
     }
 
-    .songs-wrapper {
+    .songs-text-wrapper {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
@@ -634,6 +752,24 @@ button {
         }
       }
     }
+
+    .featured-song-container {
+      display: none;
+    }
+
+    .songs-header .songs-header-wrapper {
+      width: 100%;
+    }
+
+    .songs-wrapper {
+      margin-top: 10px;
+
+      .songs-3d {
+        transform-origin: center center $album-space * -1 * (4 / 2);
+      }
+    }
+
+
   }
 
   .canvas-graphic {
@@ -647,7 +783,7 @@ button {
   }
 
   .top-artists {
-    padding: 0 2em;
+    padding: 0;
 
     h1 {
       text-align: center;
@@ -659,7 +795,7 @@ button {
 
       .artist-wrapper {
         flex-direction: row;
-        width: 90%;
+        width: 100%;
         align-items: center;
         justify-content: center;
         margin: 1em 0;
@@ -674,6 +810,7 @@ button {
           text-align: left;
           width: 75%;
           padding-left: 2em;
+          word-break: break-word;
         }
       }
     }
@@ -706,6 +843,7 @@ button {
 
       .genre-level-front {
         width: 160px;
+        word-break: break-word;
       }
     }
 
@@ -766,6 +904,7 @@ button {
 
       h1 {
         line-height: 1em;
+        font-size: 4em;
       }
     }
 
@@ -828,6 +967,40 @@ button {
         height: 250px;
         z-index: 4;
       }
+    }
+  }
+
+  .start-screen .heading-1, .start-screen .heading-2 { 
+    h1 {
+      font-size: 3em;
+    }
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .top-songs .songs-wrapper {
+    height: 200px;
+
+    .songs-3d {
+      transform-origin: center center 100px * -2;
+    }
+
+    @for $i from 0 through $song-count {
+      .song-#{$i} {
+        transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 90px) rotateY(20deg);
+
+        &:hover {
+          transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 90px) rotateY(20deg);
+        }
+        //transform: translateZ(-100px * $i);
+      }
+    }
+
+    .song-cover {
+      width: 130px;
+      height: 130px;
     }
   }
 }
