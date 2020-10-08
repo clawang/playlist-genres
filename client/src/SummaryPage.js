@@ -5,6 +5,7 @@ import TopSongs from './TopSongs';
 import TopGenres from './TopGenres';
 import CanvasGraphic from './CanvasGraphic';
 import {sortGenres, arrToList, propToArr} from './analyzeData';
+import Div100vh from 'react-div-100vh';
 
 function SummaryPage(props) {
   const [appState, setAppState] = useState({
@@ -38,26 +39,26 @@ function SummaryPage(props) {
 
   useEffect(() => {
     setAppState({timeframe:2});
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    //let vh = window.innerHeight * 0.01;
+    //document.documentElement.style.setProperty('--vh', `${vh}px`);
   }, [setAppState]);
 
-  window.addEventListener('load', () => {
-    updateHeight();
-  });
+  // window.addEventListener('load', () => {
+  //   updateHeight();
+  // });
 
-  window.addEventListener('resize', () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    updateHeight();
-  });
+  // window.addEventListener('resize', () => {
+  //   let vh = window.innerHeight * 0.01;
+  //   document.documentElement.style.setProperty('--vh', `${vh}px`);
+  //   updateHeight();
+  // });
 
   const updateHeight = () => {
-    let h = window.innerHeight;
-    document.querySelector('.top-songs-wrapper').height = h;
-    document.querySelector('.top-artists-wrapper').height = h;
-    document.querySelector('.genres-wrapper').height = h;
-    document.querySelector('.canvas-graphic-wrapper').height = h;
+    // let h = window.innerHeight;
+    // document.querySelector('.top-songs-wrapper').height = h;
+    // document.querySelector('.top-artists-wrapper').height = h;
+    // document.querySelector('.genres-wrapper').height = h;
+    // document.querySelector('.canvas-graphic-wrapper').height = h;
   }
 
   const updateTracks = (newTracks) => {
@@ -107,15 +108,17 @@ function SummaryPage(props) {
         </div>
         :
         <div className="summary">
-          <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
-          <div className="navigation"><p>{location} / 4</p></div>
-          <div className="summary-content" onScroll={handleScroll}>
-            <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists}  />
-            <TopSongs token={props.token} timeframe={ranges[appState.timeframe]} updateTracks={updateTracks}  />
-            <TopGenres token={props.token} timeframe={ranges[appState.timeframe]} updateGenres={updateGenres} />
-            <CanvasGraphic artists={artists} tracks={appState.tracks} genres={genres} finished={loaded} />
-          </div>
-          <div className="summary-bg"></div>
+          <Div100vh>
+            <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
+            <div className="navigation"><p>{location} / 4</p></div>
+            <div className="summary-content" onScroll={handleScroll}>
+              <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists}  />
+              <TopSongs token={props.token} timeframe={ranges[appState.timeframe]} updateTracks={updateTracks}  />
+              <TopGenres token={props.token} timeframe={ranges[appState.timeframe]} updateGenres={updateGenres} />
+              <CanvasGraphic artists={artists} tracks={appState.tracks} genres={genres} finished={loaded} />
+            </div>
+            <div className="summary-bg"></div>
+          </Div100vh>
         </div>
       }
     </div>
