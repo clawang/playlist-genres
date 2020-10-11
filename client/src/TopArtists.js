@@ -11,11 +11,18 @@ function TopArtists(props) {
 
   const getArtists = () => {
     let options = {time_range: props.timeframe};
-    spotifyApi.getMyTopArtists(options)
-      .then((response) => {
+    spotifyApi.getMyTopArtists(options, (err, response) => {
+      if(err) {
+        props.setError(1);
+      } else {
         setAppState({topSongs: appState.topSongs, topArtists: response.items});
         props.updateArtists(response.items);
-      })
+      }
+    });
+      // .then((response) => {
+      //   setAppState({topSongs: appState.topSongs, topArtists: response.items});
+      //   props.updateArtists(response.items);
+      // })
   }
 
   useEffect(() => {

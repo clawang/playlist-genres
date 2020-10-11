@@ -6,6 +6,7 @@ import TopGenres from './TopGenres';
 import CanvasGraphic from './CanvasGraphic';
 import {sortGenres, arrToList, propToArr} from './analyzeData';
 import Div100vh from 'react-div-100vh';
+import Loading from './Loading';
 
 function SummaryPage(props) {
   const [appState, setAppState] = useState({
@@ -20,6 +21,8 @@ function SummaryPage(props) {
   const [genres, setGenres] = useState([{}]);
 
   const [location, setLocation] = useState(1);
+
+  const [error, setError] = useState(0);
 
   const spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(props.token);
@@ -80,11 +83,12 @@ function SummaryPage(props) {
 
   return (
     <div className="summary">
+        {loaded < 3 ? <Loading state={error} /> : <></>}
         <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
         <div className="navigation"><p>{location} / 4</p></div>
         <div className="summary-content">
           <Div100vh className="full-height" onScroll={handleScroll}>
-            <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists}  />
+            <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists} setError={setError} />
             <TopSongs token={props.token} timeframe={ranges[appState.timeframe]} updateTracks={updateTracks}  />
             <TopGenres token={props.token} timeframe={ranges[appState.timeframe]} updateGenres={updateGenres} />
             <CanvasGraphic artists={artists} tracks={appState.tracks} genres={genres} finished={loaded} />
