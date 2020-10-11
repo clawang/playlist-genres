@@ -92,8 +92,8 @@ function CanvasGraphic(props) {
 	for(let i = 0; i < 5; i++) {
 		if(props.artists[i] && Object.keys(props.artists[i]).length != 0) {
 			let name = props.artists[i].name;
-			if(name.length > 19) {
-				name = name.substring(0, 19).concat('..');
+			if(name.length > 18) {
+				name = name.substring(0, 18).concat('..');
 			}
 			writeText(ctx, name, 30, 133 + i * 28);
 		}
@@ -114,8 +114,8 @@ function CanvasGraphic(props) {
 	for(let i = 0; i < 5; i++) {
 		if(props.tracks[i]) {
 			let name = props.tracks[i].name;
-			if(name.length > 19) {
-				name = name.substring(0, 19).concat('..');
+			if(name.length > 18) {
+				name = name.substring(0, 18).concat('..');
 			}
 			writeText(ctx, name, 30, 348 + i * 28);
 		}
