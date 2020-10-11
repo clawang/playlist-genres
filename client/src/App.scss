@@ -717,7 +717,7 @@ $song-count: 9;
         transform: translate3d(($i - 5) * 50px, 0, $i * -1 * 150px) rotateY(20deg);
 
         &:hover {
-          transform: translate3d(($i - 5) * 50px, -100px, $i * -1 * 150px) rotateY(20deg);
+          transform: translate3d(($i - 5) * 50px, -50px, $i * -1 * 150px) rotateY(20deg);
         }
         //transform: translateZ(-100px * $i);
       }
@@ -776,6 +776,18 @@ $song-count: 9;
         flex: 0 0 auto;
         padding: 0;
         margin: 0.5em 0;
+        position: relative;
+
+        .song-number {
+          position: absolute;
+          left: -1.2em;
+          top: -0.5em;
+
+          h3 {
+            margin-bottom: 0;
+            color: $green;
+          }
+        }
 
         h3 {
           font-size: 1.2em;
@@ -1042,17 +1054,18 @@ $song-count: 9;
     .songs-wrapper {
       height: 200px;
       margin-top: 0;
+      perspective-origin: 50% -200%;
 
       .songs-3d {
-        transform-origin: center center 100px * -2;
+        transform-origin: center center 90px * -2;
       }
 
       @for $i from 0 through $song-count {
         .song-#{$i} {
-          transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 90px) rotateY(20deg);
+          transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 80px) rotateY(20deg);
 
           &:hover {
-            transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 90px) rotateY(20deg);
+            transform: translate3d(($i - 3) * 50px, 0, $i * -1 * 80px) rotateY(20deg);
           }
           //transform: translateZ(-100px * $i);
         }

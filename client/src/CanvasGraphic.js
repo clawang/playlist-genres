@@ -55,11 +55,26 @@ function CanvasGraphic(props) {
   	if(props.tracks) {
 		image.src = props.artists[0].images[0].url || '';
 	}
+
 	image.onload = () => {
-		ctx.drawImage(image, 290, 90, 140, 130);
-		ctx.drawImage(image, 280, 115, 160, 145);
-		ctx.drawImage(image, 270, 140, 180, 170);
-		ctx.drawImage(image, 250, 170, 220, 210);
+		if(image.naturalWidth < image.naturalHeight) {
+			const diff = (image.naturalHeight - image.naturalWidth) / 2;
+			ctx.drawImage(image, 0, diff, image.naturalWidth, image.naturalWidth, 290, 90, 140, 140);
+			ctx.drawImage(image, 0, diff, image.naturalWidth, image.naturalWidth, 280, 105, 160, 160);
+			ctx.drawImage(image, 0, diff, image.naturalWidth, image.naturalWidth, 265, 125, 190, 190);
+			ctx.drawImage(image, 0, diff, image.naturalWidth, image.naturalWidth, 250, 150, 220, 220);
+		} else if(image.naturalWidth > image.naturalHeight) {
+			const diff = (image.naturalWidth - image.naturalHeight) / 2;
+			ctx.drawImage(image, diff, 0, image.naturalHeight, image.naturalHeight, 290, 90, 140, 140);
+			ctx.drawImage(image, diff, 0, image.naturalHeight, image.naturalHeight, 280, 105, 160, 160);
+			ctx.drawImage(image, diff, 0, image.naturalHeight, image.naturalHeight, 265, 125, 190, 190);
+			ctx.drawImage(image, diff, 0, image.naturalHeight, image.naturalHeight, 250, 150, 220, 220);
+		} else {
+			ctx.drawImage(image, 290, 90, 140, 140);
+			ctx.drawImage(image, 280, 105, 160, 160);
+			ctx.drawImage(image, 265, 125, 190, 190);
+			ctx.drawImage(image, 250, 150, 220, 220);
+		}
 	};
 
 	if(palette.LightVibrant) {

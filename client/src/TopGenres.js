@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
-import Playlist from './Playlist';
 import {sortGenres, propToArr, updateObj} from './analyzeData';
 
 function TopGenres(props) {

@@ -9,7 +9,7 @@ import Div100vh from 'react-div-100vh';
 
 function SummaryPage(props) {
   const [appState, setAppState] = useState({
-    timeframe: 0,
+    timeframe: 2,
     tracks: [{}]
   });
 
@@ -79,29 +79,20 @@ function SummaryPage(props) {
   }
 
   return (
-    <div>
-      {(appState.timeframe === 0) ?
-        <div className="options">
-          <div onClick={() => setAppState({timeframe:1})}><h2>4 Weeks</h2></div>
-          <div onClick={() => setAppState({timeframe:2})}><h2>6 months</h2></div>
-          <div onClick={() => setAppState({timeframe:3})}><h2>All Time</h2></div>
+    <div className="summary">
+        <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
+        <div className="navigation"><p>{location} / 4</p></div>
+        <div className="summary-content">
+          <Div100vh className="full-height" onScroll={handleScroll}>
+            <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists}  />
+            <TopSongs token={props.token} timeframe={ranges[appState.timeframe]} updateTracks={updateTracks}  />
+            <TopGenres token={props.token} timeframe={ranges[appState.timeframe]} updateGenres={updateGenres} />
+            <CanvasGraphic artists={artists} tracks={appState.tracks} genres={genres} finished={loaded} />
+          </Div100vh>
         </div>
-        :
-        <div className="summary">
-            <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
-            <div className="navigation"><p>{location} / 4</p></div>
-            <div className="summary-content">
-              <Div100vh className="full-height" onScroll={handleScroll}>
-                <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists}  />
-                <TopSongs token={props.token} timeframe={ranges[appState.timeframe]} updateTracks={updateTracks}  />
-                <TopGenres token={props.token} timeframe={ranges[appState.timeframe]} updateGenres={updateGenres} />
-                <CanvasGraphic artists={artists} tracks={appState.tracks} genres={genres} finished={loaded} />
-              </Div100vh>
-            </div>
-            <div className="summary-bg"></div> 
-        </div>
-      }
+        <div className="summary-bg"></div> 
     </div>
+      
   )
 }
 

@@ -78,7 +78,7 @@ function TopSongs(props) {
               <div className="songs-3d">
               {appState.topSongs.slice(0,mobile ? 5 : 10).map((song, index) => {
                 return (
-                  <SongCover src={song.album.images[0].url} index={index} key={index} handleHover={() => handleHover(song.name, song.artists, index)} handleMouseLeave={() => handleHover('', [{}], 0)}/>
+                  <SongCover src={song.album.images[0].url} name={song.name} index={index} key={index} handleHover={() => handleHover(song.name, song.artists, index)} handleMouseLeave={() => handleHover('', [{}], 0)}/>
                 );
               })}
             </div>
@@ -106,7 +106,7 @@ function TopSongs(props) {
 function SongCover(props) {
   return (
     <div className={"song-cover " + "song-" + props.index} onMouseOver={props.handleHover} onMouseLeave={props.handleMouseLeave}>
-      <img src={props.src} />
+      <img src={props.src} alt={props.name} />
     </div>
   );
 }

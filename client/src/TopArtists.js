@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
-import {arrToList} from './analyzeData';
 
 function TopArtists(props) {
   const [appState, setAppState] = useState({
@@ -21,23 +20,8 @@ function TopArtists(props) {
 
   useEffect(() => {
     getArtists();
-    resizeImgs();
+    //resizeImgs();
   }, [setAppState]);
-
-  const resizeImgs = () => {
-    document.querySelectorAll('.img3, .img2, .img1').forEach(img => {
-      let w = img.clientWidth;
-      img.style.height = w + 'px';
-    });
-  }
-
-  window.addEventListener('load', function() {
-    resizeImgs();
-  });
-
-  window.addEventListener('resize', () => {
-    resizeImgs();
-  });
 
   return (
     <div className="top-artists-wrapper">
@@ -48,11 +32,7 @@ function TopArtists(props) {
           {appState.topArtists.slice(0,3).map((artist, index) => {
             return(
               <div className="artist-wrapper" key={index}>
-                <div className="artist-images">
-                  <img src={artist.images[0].url} className="img1" />
-                  <img src={artist.images[0].url} className="img2" />                  
-                  <img src={artist.images[0].url} className="img3"/>
-                </div>
+                <ArtistImages artist={artist} />
                 <div className="artist-desc">
                   <h3 className="black">#{index+1}</h3>
                   <h3 className="green">{artist.name}</h3>
@@ -65,6 +45,31 @@ function TopArtists(props) {
         :
         <p>Loading...</p>
       }
+    </div>
+  )
+}
+
+function ArtistImages(props) {
+  useEffect(() => {
+    resizeImgs();
+  }, []);
+
+  const resizeImgs = () => {
+    document.querySelectorAll('.img3, .img2, .img1').forEach(img => {
+      let w = img.clientWidth;
+      img.style.height = w + 'px';
+    });
+  }
+
+  window.addEventListener('resize', () => {
+    resizeImgs();
+  });
+
+  return (
+    <div className="artist-images">
+      <img src={props.artist.images[0].url} className="img1" alt={props.artist.name} />
+      <img src={props.artist.images[0].url} className="img2" alt={props.artist.name} />                  
+      <img src={props.artist.images[0].url} className="img3" alt={props.artist.name} />
     </div>
   )
 }

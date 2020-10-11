@@ -1,5 +1,3 @@
-import React from 'react';
-
 function sortGenres(genres) {
 	var sortable = [];
 	for (var g in genres) {
