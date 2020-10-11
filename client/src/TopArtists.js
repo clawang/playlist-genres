@@ -19,15 +19,10 @@ function TopArtists(props) {
         props.updateArtists(response.items);
       }
     });
-      // .then((response) => {
-      //   setAppState({topSongs: appState.topSongs, topArtists: response.items});
-      //   props.updateArtists(response.items);
-      // })
   }
 
   useEffect(() => {
     getArtists();
-    //resizeImgs();
   }, [setAppState]);
 
   return (

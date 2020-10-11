@@ -83,7 +83,13 @@ function SummaryPage(props) {
 
   return (
     <div className="summary">
-        {loaded < 3 ? <Loading state={error} /> : <></>}
+        {loaded < 3 ? 
+          <Div100vh>
+            <Loading state={error} /> 
+          </Div100vh>
+          : 
+          <></>
+        }
         <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
         <div className="navigation"><p>{location} / 4</p></div>
         <div className="summary-content">
