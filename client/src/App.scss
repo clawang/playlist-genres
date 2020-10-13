@@ -210,7 +210,7 @@ button {
   min-height: 100vh;
   //min-height: 750px;
   width: 100%;
-  min-width: 400px;
+  min-width: 375px;
   padding: 5em 0;
   scroll-snap-align: start;
   overflow: hidden;
@@ -1011,6 +1011,9 @@ $song-count: 9;
 
   .genre-level-wrapper {
     width: 400px;
+    right: auto;
+    height: 400px;
+    margin: 0;
     .genre-level {
       width: 130px;
       .genre-level-front {
@@ -1035,12 +1038,12 @@ $song-count: 9;
 
       &:nth-of-type(3) {
         //height: 300px;
-        height: 350px;
+        height: 330px;
         left: 60px;
       }
 
       &:nth-of-type(4) {
-        height: 400px;
+        height: 370px;
         left: 180px;
       }
 
@@ -1067,7 +1070,7 @@ $song-count: 9;
     h2 {
       line-height: 1em;
       font-size: 1.7em;
-      margin: 0 0 0.5em 0;
+      margin: 1em 0 0.5em 0;
     }
 
     .song-wrapper {
@@ -1084,7 +1087,7 @@ $song-count: 9;
       }
     }
     .songs-wrapper {
-      height: 200px;
+      height: 180px;
       margin-top: 0;
       perspective-origin: 50% -200%;
 
@@ -1112,6 +1115,49 @@ $song-count: 9;
 
   .credit {
     right: -55px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .genres {align-items: center;}
+  .genre-level-wrapper {
+    width: 370px;
+
+    &> div {
+
+      &:nth-of-type(1) {
+        //height: 150px;
+        left: 0;
+      }
+
+      &:nth-of-type(2) {
+        //height: 200px;
+      }
+
+      &:nth-of-type(3) {
+        //height: 300px;
+        left: 60px;
+      }
+
+      &:nth-of-type(4) {
+        left: 180px;
+      }
+
+      &:nth-of-type(5) {
+        //height: 250px;
+        left: 115px;
+      }
+    }
+  }
+
+  .canvas-graphic-wrapper {
+    padding: 0.5em;
+    .canvas-title {
+      padding: 1em 2em;
+    }
+    canvas {
+      margin-top: 0;
+    }
   }
 }
 
