@@ -33,13 +33,13 @@ function TopSongs(props) {
 
   useEffect(() => {
     getTracks();
-    if(window.outerWidth < 800) {
+    if(window.innerWidth < 800) {
       setMobile(true);
     }
   }, [setAppState]);
 
   window.addEventListener('resize', () => {
-    if(window.outerWidth < 800) {
+    if(window.innerWidth < 800) {
       setMobile(true);
     } else {
       setMobile(false);

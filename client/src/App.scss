@@ -43,7 +43,7 @@ h2, h3 {
   letter-spacing: -.02em;
   font-weight: 900;
   font-family: 'Circular Spotify', 'Helvetica', sans-serif;
-  margin: 0.3em;
+  margin: 0.3em 0;
 }
 
 p {
@@ -911,18 +911,20 @@ $song-count: 9;
     height: 500px;
     position: relative;
     right: 0;
-    width: 450px;
+    width: 100%;
     margin: 0 auto 2em;
 
     .genre-level {
       position: absolute;
       bottom: 0;
-      width: 160px;
+      width: 35%;
 
       .genre-level-front {
-        width: 160px;
+        width: 100%;
         word-break: break-word;
       }
+
+      .genre-leve-back {width: 100%}
     }
 
     &> div {
@@ -934,25 +936,25 @@ $song-count: 9;
 
       &:nth-of-type(2) {
         //height: 200px;
-        left: 280px;
+        left: 62%;
         z-index: 5;
       }
 
       &:nth-of-type(3) {
         //height: 300px;
         height: 350px;
-        left: 80px;
+        left: 18%;
       }
 
       &:nth-of-type(4) {
         //height: 400px;
-        left: 220px;
+        left: 49%;
         height: 450px;
       }
 
       &:nth-of-type(5) {
         //height: 250px;
-        left: 140px;
+        left: 31%;
         height: 250px;
         z-index: 4;
       }
@@ -1010,14 +1012,12 @@ $song-count: 9;
   }
 
   .genre-level-wrapper {
-    width: 400px;
+    //width: 400px;
     right: auto;
     height: 400px;
     margin: 0;
     .genre-level {
-      width: 130px;
       .genre-level-front {
-        width: 130px;
         h3 {
           font-size: 1em;
         }
@@ -1026,32 +1026,26 @@ $song-count: 9;
     &> div {
       &:nth-of-type(1) {
         //height: 150px;
-        left: 0;
         z-index: 3;
       }
 
       &:nth-of-type(2) {
         //height: 200px;
-        left: 230px;
         z-index: 5;
       }
 
       &:nth-of-type(3) {
         //height: 300px;
         height: 330px;
-        left: 60px;
       }
 
       &:nth-of-type(4) {
         height: 370px;
-        left: 180px;
       }
 
       &:nth-of-type(5) {
         //height: 250px;
-        left: 115px;
         height: 250px;
-        z-index: 4;
       }
     }
   }
@@ -1085,6 +1079,7 @@ $song-count: 9;
           font-size: 0.8em;
         }
       }
+      .song-details {padding-right: 1em;}
     }
     .songs-wrapper {
       height: 180px;

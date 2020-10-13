@@ -24,7 +24,7 @@ function CanvasGraphic(props) {
   	c.width = c.clientWidth * 2
 	c.height = c.clientHeight * 2
   	let ctx = c.getContext("2d");
-  	if(window.outerWidth < 600) {
+  	if(window.innerWidth < 600) {
   		ctx.scale(1.4, 1.4);
   	} else {
   		ctx.scale(2, 2);
