@@ -4,6 +4,9 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var path = require('path');
+var log4js = require('log4js');
+
+require('dotenv').config();
 
 var client_id = '2fe65fcbcf884c1c9fafda1d069bb45c'; // Your client id
 var client_secret = '892e45da9ad74f70b37eddaac40defc7'; // Your secret
@@ -96,7 +99,12 @@ app.get('/callback', function(req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-          //console.log(body);
+
+          let str = "NNEW_USER_LOG: ";
+          str += (body.display_name).concat(" | ");
+          str += body.external_urls.spotify;
+          console.log(str);
+
           uri = body.uri;
           if(uri === 'spotify:user:1291487450') {
             res.sendFile(path.join(__dirname, 'public', 'index.html'));

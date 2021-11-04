@@ -38,8 +38,8 @@ function App() {
     <div className='App'>
       {appState.loggedIn ?
         <div>
-          <SummaryPage token={appState.token} />
-        {/*<PlaylistPage token={appState.token} />*/}
+          {<SummaryPage token={appState.token} />}
+          {/*<PlaylistPage token={appState.token} />*/}
         </div>
         :
         <Div100vh>

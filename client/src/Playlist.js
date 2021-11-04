@@ -20,6 +20,7 @@ function Playlist(props) {
 	}
 
 	const getTracks = () => {
+		console.log(props.pl);
 		spotifyApi.getPlaylistTracks(props.pl.id)
 	      .then((response) => {
 	        let ids = response.items.map((song) => {
@@ -72,7 +73,7 @@ function Playlist(props) {
 
 	useEffect(() => {
 		getTracks();
-	}, [setAppState]);
+	}, [props.pl]);
 
 	if (appState.loading) return <p>Loading...</p>;
 	return (

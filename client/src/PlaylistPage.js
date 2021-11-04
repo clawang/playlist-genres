@@ -8,6 +8,7 @@ function PlaylistPage(props) {
     playlists: [{}],
     genres: {}
   });
+  const [loading, setLoading] = useState(true);
 
   const spotifyApi = new SpotifyWebApi();
   spotifyApi.setAccessToken(props.token);
@@ -15,6 +16,7 @@ function PlaylistPage(props) {
   const getPlaylists = () => {
     spotifyApi.getUserPlaylists()
       .then((response) => {
+        //console.log(response.items);
         setAppState({playlists: response.items, genres: appState.genres});
       })
   }
@@ -22,6 +24,10 @@ function PlaylistPage(props) {
   useEffect(() => {
     getPlaylists();
   }, [setAppState]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, [appState.playlists]);
 
   const setGenres = (obj) => {
     let newObj = sortGenres(obj);
@@ -46,16 +52,18 @@ function PlaylistPage(props) {
 
   return (
     <div className="genres-wrapper">
-      <div className="genres">
+      {/*<div className="genres">
         <h2>Your Top Genres:</h2>
         <div className="genre-level-wrapper">
           {strGenres(appState.genres)}
         </div>
-      </div>
+      </div>*/}
       <div className="playlist-wrapper">
-        {appState.playlists.map((pl) => {
+        {!loading ? appState.playlists.map((pl) => {
             return <Playlist pl={pl} allGenres={appState.genres} setGenres={setGenres} />;
-          })
+          }) 
+        :
+        <div></div>
         }
       </div>
     </div>
