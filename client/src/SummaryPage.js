@@ -10,9 +10,12 @@ import Loading from './Loading';
 
 function SummaryPage(props) {
   const [appState, setAppState] = useState({
+    chosen: false,
     timeframe: 2,
     tracks: [{}]
   });
+
+  console.log(appState);
 
   const [artists, setArtists] = useState([{}]);
 
@@ -41,11 +44,15 @@ function SummaryPage(props) {
   }
 
   useEffect(() => {
-    setAppState({timeframe:2});
+    //setAppState({timeframe:2});
   }, [setAppState]);
 
+  const updateTimeframe = (time) => {
+    setAppState({...appState, timeframe: time, chosen: true});
+  }
+
   const updateTracks = (newTracks) => {
-    setAppState({timeframe: appState.timeframe, tracks: newTracks});
+    setAppState({...appState, tracks: newTracks});
     setLoaded(loaded => loaded + 1);
   }
 
@@ -83,24 +90,40 @@ function SummaryPage(props) {
 
   return (
     <div className="summary">
-        {loaded < 3 ? 
-          <Div100vh>
-            <Loading state={error} /> 
-          </Div100vh>
-          : 
-          <></>
-        }
-        <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
-        <div className="navigation"><p>{location} / 4</p></div>
-        <div className="summary-content">
-          <Div100vh className="full-height" onScroll={handleScroll}>
-            <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists} setError={setError} />
-            <TopSongs token={props.token} timeframe={ranges[appState.timeframe]} updateTracks={updateTracks}  />
-            <TopGenres token={props.token} timeframe={ranges[appState.timeframe]} updateGenres={updateGenres} />
-            <CanvasGraphic artists={artists} tracks={appState.tracks} genres={genres} finished={loaded} />
-          </Div100vh>
+    {
+      appState.chosen ?
+        <div>
+          {loaded < 3 ? 
+            <Div100vh>
+              <Loading state={error} /> 
+            </Div100vh>
+            : 
+            <></>
+          }
+          <div className="credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
+          <div className="navigation"><p>{location} / 4</p></div>
+          <div className="summary-content">
+            <Div100vh className="full-height" onScroll={handleScroll}>
+              <TopArtists token={props.token} timeframe={ranges[appState.timeframe]} updateArtists={updateArtists} setError={setError} />
+              <TopSongs token={props.token} timeframe={ranges[appState.timeframe]} updateTracks={updateTracks}  />
+              <TopGenres token={props.token} timeframe={ranges[appState.timeframe]} updateGenres={updateGenres} />
+              <CanvasGraphic artists={artists} tracks={appState.tracks} genres={genres} finished={loaded} />
+            </Div100vh>
+          </div>
+          <div className="summary-bg"></div>
         </div>
-        <div className="summary-bg"></div> 
+        :
+        <Div100vh>
+          <div className="time-selection">
+            <h1>See data from the past:</h1>
+            <div className="time-selection-buttons">
+              <button onClick={() => updateTimeframe(1)}>4 Weeks</button>
+              <button onClick={() => updateTimeframe(2)}>6 Months</button>
+              <button onClick={() => updateTimeframe(3)}>2 Years</button>
+            </div>
+          </div>
+        </Div100vh>
+      }
     </div>
       
   )
