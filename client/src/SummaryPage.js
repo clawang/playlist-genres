@@ -15,8 +15,6 @@ function SummaryPage(props) {
     tracks: [{}]
   });
 
-  console.log(appState);
-
   const [artists, setArtists] = useState([{}]);
 
   const [loaded, setLoaded] = useState(0);
