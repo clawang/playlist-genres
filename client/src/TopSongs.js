@@ -64,8 +64,8 @@ function TopSongs(props) {
                       <h3>{index + 1}</h3>
                     </div>
                     <div className="song-details">
-                      <h3>{(song.name.length > 25) ? song.name.substring(0, 25).concat('..') : song.name}</h3>
-                      <p className="pink">{arrToList(song.artists, "name")}</p>
+                      <h3 className="song-details-title">{song.name}</h3>
+                      <p className="song-details-artists">{arrToList(song.artists, "name")}</p>
                     </div>
                   </div>
                 )
@@ -87,8 +87,8 @@ function TopSongs(props) {
           {songDetails.name ?
             <div className="featured-song">
               <h3 className="featured-song-number">{songDetails.number + 1}</h3>
-              <h3>{(songDetails.name.length > 24) ? songDetails.name.substring(0, 24).concat('..') : songDetails.name}</h3>
-              <p>{arrToList(songDetails.artists, 'name')}</p>
+              <h3 className="featured-song-title">{songDetails.name}</h3>
+              <p className="featured-song-artist">{arrToList(songDetails.artists, 'name')}</p>
             </div>
             :
             <p></p>

@@ -162,6 +162,16 @@ button {
   left: 0;
 }
 
+@mixin line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+}
+
 .loading {
   position: fixed;
   width: 100%;
@@ -421,6 +431,14 @@ $song-count: 9;
         left: -1em;
         color: $pink;
       }
+
+      .featured-song-title {
+        @include line-clamp;
+      }
+
+      .featured-song-artist {
+        @include line-clamp;
+      }
     }
   }
 
@@ -492,6 +510,16 @@ $song-count: 9;
 
     .song-details {
       width: 80%;
+
+      .song-details-title {
+        @include line-clamp;
+      }
+
+      .song-details-artists {
+        @include line-clamp;
+        color: $pink;
+        margin: 0;
+      }
 
       h3 {
         font-size: 1.5em;
