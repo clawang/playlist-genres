@@ -691,6 +691,10 @@ $song-count: 9;
   }
 }
 
+.canvas-credit {
+  display: none;
+}
+
 .canvas-graphic-wrapper {
   @include subpage;
   text-align: left;
@@ -1058,6 +1062,21 @@ $song-count: 9;
   }
 
   .credit {display:none;}
+  .canvas-credit {
+    display: block;
+    font-size: 9px;
+    margin: 1em 0;
+    
+    a {
+      text-decoration: none;
+      color: black;
+      transition: 0.5s linear;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 600px) {

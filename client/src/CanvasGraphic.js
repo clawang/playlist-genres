@@ -195,6 +195,7 @@ function CanvasGraphic(props) {
 	    		<button onClick={dlCanvas} className='download-btn'>Download</button>
 	    	</div>
 	      <canvas id='downloadable' width='500' height='500'></canvas>
+	      <div className="canvas-credit">Made with ♥ by <a href="https://clawang.github.io/" id="credit-link">Claire Wang</a>.</div>
       </div>
     </div>
   )
