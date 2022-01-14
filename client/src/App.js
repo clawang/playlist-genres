@@ -46,29 +46,54 @@ function App() {
 
   return (
     <div className='App'>
-      {appState.loggedIn ?
-        <div className="wrapper">
-          <PlaylistPage token={appState.token} id={appState.id} logOut={logOut} notePadOptions={notePadOptions}/>
-        </div>
-        :
-        <div className="wrapper">
-          {creditsOpen ? 
-            <Window id="credits" title="Note Pad" options={notePadOptions}>
-              <h3 style={{cursor: 'pointer'}} onClick={() => setOpen(false)}>&lt;&lt; Go back</h3>
-              <p><a href="https://clawang.github.io/">Made by Claire Wang</a></p>
-              <p><a href="https://open.spotify.com/user/1241364699?si=5278203f6e2942e6">Follow me on Spotify!</a></p>
-            </Window>
+      <Div100vh>
+        {appState.loggedIn ?
+          <div className="wrapper">
+            <PlaylistPage 
+              token={appState.token} 
+              id={appState.id} 
+              logOut={logOut} 
+              notePadOptions={notePadOptions}
+            />
+          </div>
           :
-            <Window id="login" title="Internet Explorer" options={internetOptions} addressBar={true} bottomBar={true} bottomBarId="credits-link" bottomBarClick={() => setOpen(true)} bottomBarContent="Credits">            
-              <img src={cd} />
-              <h1>Playlist Genre Analyzer</h1>
-              <div className="start-descrip">
-                <div className="button-wrapper"><div className="button"><a href="http://localhost:8888/login"> Connect Spotify </a></div></div>
-              </div>
-            </Window>
-          }
-        </div>
-      }
+          <div className="wrapper">
+            {creditsOpen ? 
+              <Window 
+                id="credits" 
+                title="Note Pad" 
+                closeFunction={() => setOpen(false)}
+                options={notePadOptions}
+              >
+                <h3 
+                  style={{cursor: 'pointer'}} 
+                  onClick={() => setOpen(false)}>
+                  &lt;&lt; Go back
+                </h3>
+                <p><a href="https://clawang.github.io/">Made by Claire Wang</a></p>
+                <p><a href="https://open.spotify.com/user/1241364699?si=5278203f6e2942e6">Follow me on Spotify!</a></p>
+              </Window>
+            :
+              <Window 
+                id="login" 
+                title="Internet Explorer" 
+                options={internetOptions} 
+                addressBar={true} 
+                bottomBar={true} 
+                bottomBarId="credits-link" 
+                bottomBarClick={() => setOpen(true)} 
+                bottomBarContent="Credits"
+              >            
+                <img src={cd} />
+                <h1>Playlist Genre Analyzer</h1>
+                <div className="start-descrip">
+                  <div className="button-wrapper"><div className="button"><a href="/login"> Connect Spotify </a></div></div>
+                </div>
+              </Window>
+            }
+          </div>
+        }
+      </Div100vh>
     </div>
   )
 }

@@ -63,7 +63,14 @@ function PlaylistPage(props) {
           {strGenres(appState.genres)}
         </div>
       </div>*/}
-      <Window id="playlists" title="File Manager" closeFunction={props.logOut} options={fileManagerOptions} bottomBar={true} bottomBarContent={"Total "+ appState.playlists.length + " file(s)"}>
+      <Window 
+        id="playlists" 
+        title="File Manager" 
+        closeFunction={props.logOut} 
+        options={fileManagerOptions} 
+        bottomBar={true} 
+        bottomBarContent={"Total "+ appState.playlists.length + " file(s)"}
+      >
         <div className="folder-wrapper">
           <img src={folder} />
           <p className="playlist-name">my playlists</p>
@@ -87,8 +94,19 @@ function PlaylistPage(props) {
       <div className="popup-wrapper">
         {
           featured >= 0 ?
-            <Window id="featured" title="Note Pad" options={props.notePadOptions} closeFunction={() => setFeatured(-1)} bottomBar={false}>
-              <Playlist pl={appState.playlists[featured]} allGenres={appState.genres} setGenres={setGenres} setFeatured={setFeatured}/>
+            <Window 
+              id="featured" 
+              title="Note Pad" 
+              options={props.notePadOptions} 
+              closeFunction={() => setFeatured(-1)} 
+              bottomBar={false}
+            >
+              <Playlist 
+                pl={appState.playlists[featured]} 
+                allGenres={appState.genres} 
+                setGenres={setGenres} 
+                setFeatured={setFeatured}
+              />
             </Window>
           :
             <div></div>
