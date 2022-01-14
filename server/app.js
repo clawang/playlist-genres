@@ -12,7 +12,7 @@ var client_id = '2fe65fcbcf884c1c9fafda1d069bb45c'; // Your client id
 var client_secret = '892e45da9ad74f70b37eddaac40defc7'; // Your secret
 var redirect_uri;
 if(process.env.PORT) {
-  redirect_uri = 'https://quarantine-wrapped.herokuapp.com/callback'; // Your redirect uri
+  redirect_uri = 'https://genre-analyzer.herokuapp.com/callback'; // Your redirect uri
 } else {
   redirect_uri = 'http://localhost:8888/callback';
 }
