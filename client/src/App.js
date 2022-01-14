@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './App.scss';
 import SpotifyWebApi from 'spotify-web-api-js';
 import PlaylistPage from './PlaylistPage';
+import Window from './Window';
 import Div100vh from 'react-div-100vh';
 import cd from './cd.gif';
 
@@ -40,70 +41,31 @@ function App() {
     setAppState({loggedIn: token ? true : false, token: token, id: params.id});
   }, [setAppState]);
 
+  const notePadOptions = ['file', 'edit', 'format', 'view', 'help'];
+  const internetOptions = ['file','edit','view','favorites','help'];
+
   return (
     <div className='App'>
       {appState.loggedIn ?
         <div className="wrapper">
-          <PlaylistPage token={appState.token} id={appState.id} logOut={logOut} />
+          <PlaylistPage token={appState.token} id={appState.id} logOut={logOut} notePadOptions={notePadOptions}/>
         </div>
         :
         <div className="wrapper">
           {creditsOpen ? 
-            <div className="main-window" id="credits">
-              <div className="window-title-bar">
-                <p>Note Pad</p>
-                <p className="close" onClick={() => setOpen(false)}>X</p>
-              </div>
-              <div className="inner-window">
-                <div className="window-nav-bar">
-                  <ul>
-                    <li>file</li>
-                    <li>edit</li>
-                    <li>format</li>
-                    <li>view</li>
-                    <li>help</li>
-                  </ul>
-                </div>
-                <div className="content-window">
-                  <h3 style={{cursor: 'pointer'}} onClick={() => setOpen(false)}>&lt;&lt; Go back</h3>
-                  <p><a href="https://clawang.github.io/">Made by Claire Wang</a></p>
-                  <p><a href="https://open.spotify.com/user/1241364699?si=5278203f6e2942e6">Follow me on Spotify!</a></p>
-                </div>
-              </div>
-            </div>
+            <Window id="credits" title="Note Pad" options={notePadOptions}>
+              <h3 style={{cursor: 'pointer'}} onClick={() => setOpen(false)}>&lt;&lt; Go back</h3>
+              <p><a href="https://clawang.github.io/">Made by Claire Wang</a></p>
+              <p><a href="https://open.spotify.com/user/1241364699?si=5278203f6e2942e6">Follow me on Spotify!</a></p>
+            </Window>
           :
-            <div className="main-window" id="login">
-              <div className="window-title-bar">
-                <p>Internet Explorer</p>
-                <p className="close">X</p>
+            <Window id="login" title="Internet Explorer" options={internetOptions} addressBar={true} bottomBar={true} bottomBarId="credits-link" bottomBarClick={() => setOpen(true)} bottomBarContent="Credits">            
+              <img src={cd} />
+              <h1>Playlist Genre Analyzer</h1>
+              <div className="start-descrip">
+                <div className="button-wrapper"><div className="button"><a href="http://localhost:8888/login"> Connect Spotify </a></div></div>
               </div>
-              <div className="inner-window">
-                <div className="window-nav-bar">
-                  <ul>
-                    <li>file</li>
-                    <li>edit</li>
-                    <li>view</li>
-                    <li>favorites</li>
-                    <li>help</li>
-                  </ul>
-                </div>
-                <div className="address-bar">
-                  <p>Address:</p>
-                  <div className="url">https://genre-analyzer.herokuapp.com/</div>
-                  <p>Links</p>
-                </div>
-                <div className="content-window">
-                  <img src={cd} />
-                  <h1>Playlist Genre Analyzer</h1>
-                  <div className="start-descrip">
-                    <div className="button-wrapper"><div className="button"><a href="http://localhost:8888/login"> Connect Spotify </a></div></div>
-                  </div>
-                </div>
-              </div>
-              <div className="bottom-bar">
-                <p id="credits-link" onClick={() => setOpen(true)}>Credits</p>
-              </div>
-            </div>
+            </Window>
           }
         </div>
       }
