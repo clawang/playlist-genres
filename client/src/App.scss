@@ -13,9 +13,6 @@ body {
   font-family: 'FreePixel', 'Proxima Nova', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  height: auto;
-  background: url("pastel.jpeg");
-  background-size: cover;
 }
 
 h1 {
@@ -72,6 +69,11 @@ div {
 
 .App {
   position: relative;
+
+  &> div {
+    background: url("pastel.jpeg");
+    background-size: cover;
+  }
 }
 
 .start-bar {
