@@ -1,6 +1,6 @@
-# Quarantine Wrapped
+# Genre Analyzer
 
-This React app gathers your Spotify listening data for the past 6 months and displays it in a fun and engaging manner. Mostly a Spotify Wrapped clone.
+This React app analyzes all your public Spotify playlists and displays the top three genres in each.
 
 Technologies used:
 * React
