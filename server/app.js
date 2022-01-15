@@ -100,7 +100,7 @@ app.get('/callback', function(req, res) {
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
 
-          let str = "NNEW_USER_LOG: ";
+          let str = "NEW_GENRE_USER_LOG: ";
           str += (body.display_name).concat(" | ");
           str += body.external_urls.spotify;
           console.log(str);
