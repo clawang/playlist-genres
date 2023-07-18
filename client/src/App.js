@@ -67,7 +67,7 @@ function App() {
                 <img src={cd} />
                 <h1>Playlist Genre Analyzer</h1>
                 <div className="start-descrip">
-                  <p>Made by <a href="https://linktr.ee/claireyw">Claire Wang</a></p>
+                  <p>Made by <a href="https://linktr.ee/claireyw" target="_blank">Claire Wang</a></p>
                   <div className="button-wrapper"><div className="button"><a href="/login"> Connect Spotify </a></div></div>
                 </div>
               </Window>
