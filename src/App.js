@@ -6,7 +6,7 @@ import Window from './Window';
 import Div100vh from 'react-div-100vh';
 import cd from './assets/cd.gif';
 
-const REDIRECT_URI = "http://localhost:3000/";
+const REDIRECT_URI = "https://playlist-genres.netlify.app/" || "http://localhost:3000/";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
 const RESPONSE_TYPE = "token"
 
