@@ -2,7 +2,7 @@ $windows-grey: #eae9e7;
 
 @font-face {
   font-family: FreePixel;
-  src: url('FreePixel.ttf');
+  src: url('./assets/FreePixel.ttf');
 }
 
 html {
@@ -71,7 +71,7 @@ div {
   position: relative;
 
   &> div {
-    background: url("pastel.jpeg");
+    background: url("./assets/pastel.jpeg");
     background-size: cover;
   }
 }

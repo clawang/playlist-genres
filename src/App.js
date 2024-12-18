@@ -4,7 +4,7 @@ import SpotifyWebApi from 'spotify-web-api-js';
 import PlaylistPage from './PlaylistPage';
 import Window from './Window';
 import Div100vh from 'react-div-100vh';
-import cd from './cd.gif';
+import cd from './assets/cd.gif';
 
 const REDIRECT_URI = "http://localhost:3000/";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
